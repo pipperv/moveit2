@@ -90,6 +90,33 @@ enum Button
   RIGHT_STICK_CLICK = 13
 };
 
+// For XBOX 360 controller
+// enum Axis
+// {
+//   LEFT_STICK_X = 0,
+//   LEFT_STICK_Y = 1,
+//   LEFT_TRIGGER = 2,
+//   RIGHT_STICK_X = 3,
+//   RIGHT_STICK_Y = 4,
+//   RIGHT_TRIGGER = 5,
+//   D_PAD_X = 6,
+//   D_PAD_Y = 7
+// };
+// enum Button
+// {
+//   A = 0,
+//   B = 1,
+//   X = 2,
+//   Y = 3,
+//   LEFT_BUMPER = 4,
+//   RIGHT_BUMPER = 5,
+//   MINUS = 6,
+//   PLUS = 7,
+//   HOME = 8,
+//   LEFT_STICK_CLICK = 9,
+//   RIGHT_STICK_CLICK = 10
+// };
+
 // Some axes have offsets (e.g. the default trigger position is 1.0 not 0)
 // This will map the default values for the axes
 // std::map<Axis, double> AXIS_DEFAULTS = { { LEFT_TRIGGER, 1.0 }, { RIGHT_TRIGGER, 1.0 } };

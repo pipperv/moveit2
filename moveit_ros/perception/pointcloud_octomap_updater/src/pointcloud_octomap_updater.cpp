@@ -174,13 +174,13 @@ void PointCloudOctomapUpdater::cloudMsgCallback(const sensor_msgs::msg::PointClo
   RCLCPP_DEBUG(LOGGER, "Received a new point cloud message");
   rclcpp::Time start = rclcpp::Clock(RCL_ROS_TIME).now();
 
-  if (max_update_rate_ > 0)
-  {
-    // ensure we are not updating the octomap representation too often
-    if ((node_->now() - last_update_time_) <= rclcpp::Duration::from_seconds(1.0 / max_update_rate_))
-      return;
-    last_update_time_ = node_->now();
-  }
+  // if (max_update_rate_ > 0)
+  // {
+  //   // ensure we are not updating the octomap representation too often
+  //   if ((node_->now() - last_update_time_) <= rclcpp::Duration::from_seconds(1.0 / max_update_rate_))
+  //     return;
+  //   last_update_time_ = node_->now();
+  // }
 
   if (monitor_->getMapFrame().empty())
     monitor_->setMapFrame(cloud_msg->header.frame_id);

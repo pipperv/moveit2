@@ -46,8 +46,14 @@
 #include <moveit/planning_scene_monitor/planning_scene_monitor.h>
 #include <sensor_msgs/msg/joint_state.hpp>
 #include <std_msgs/msg/float64.hpp>
+#include <geometry_msgs/msg/point_stamped.hpp>
+#include <geometry_msgs/msg/pose_array.hpp>
+#include <visualization_msgs/msg/marker_array.hpp>
+#include <visualization_msgs/msg/marker.hpp>
 
 #include <moveit_servo/servo_parameters.h>
+
+#include <Eigen/Core>
 
 namespace moveit_servo
 {
@@ -107,13 +113,26 @@ private:
   // collision request
   collision_detection::CollisionRequest collision_request_;
   collision_detection::CollisionResult collision_result_;
+  collision_detection::DistanceRequest distance_request_;
+  collision_detection::DistanceResult distance_result_;
+
+  Eigen::Vector3d nearest_points_0_;
+  Eigen::Vector3d nearest_points_1_;
+  Eigen::Vector3d normal_;
 
   // ROS
   rclcpp::TimerBase::SharedPtr timer_;
   double period_;  // The loop period, in seconds
   rclcpp::Publisher<std_msgs::msg::Float64>::SharedPtr collision_velocity_scale_pub_;
+  rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr nearest_points_0_pub_;
+  rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr nearest_points_1_pub_;
+  rclcpp::Publisher<geometry_msgs::msg::PoseArray>::SharedPtr pose_array_pub_;
+  rclcpp::Publisher<visualization_msgs::msg::MarkerArray>::SharedPtr marker_array_pub_;
 
   mutable std::mutex joint_state_mutex_;
   sensor_msgs::msg::JointState latest_joint_state_;
+
+  visualization_msgs::msg::MarkerArray marker_array;
+  visualization_msgs::msg::Marker marker;
 };
 }  // namespace moveit_servo
